@@ -1,7 +1,7 @@
 ---
 import { timeLeft } from '../lib/countdown.js';
 
-const { titulo, fechaISO, mensajeLlegada } = Astro.props;
+const { titulo, fechaISO, mensajeLlegada, pie } = Astro.props;
 
 const unidades = [
   { clave: 'dias', label: 'días' },
@@ -28,6 +28,7 @@ const inicial = timeLeft(new Date(fechaISO), new Date());
       ))}
     </div>
   )}
+  {pie && <p class="pie">{pie}</p>}
 </section>
 
 <script>
@@ -66,9 +67,16 @@ const inicial = timeLeft(new Date(fechaISO), new Date());
   .countdown h2 {
     font-family: var(--script);
     font-weight: 400;
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+    line-height: 1.1;
     color: var(--acento);
     margin: 0 0 clamp(1rem, 3vh, 1.75rem);
+  }
+
+  .pie {
+    margin: clamp(1rem, 3vh, 1.5rem) 0 0;
+    font-size: clamp(0.85rem, 3.4vw, 1rem);
+    letter-spacing: 0.12em;
   }
 
   /* Mobile: 2x2 para que los números respiren. Desde 30rem, una fila de 4. */

@@ -23,7 +23,7 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Great+Vibes&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Qwitcher+Grypen:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -36,13 +36,13 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
           <span class="amp">&amp;</span>
           <span class="nombre">{boda.novios.el}</span>
         </h1>
-        <p class="fecha">{boda.ceremonia.fechaTexto} &nbsp;·&nbsp; {boda.ceremonia.horaTexto}</p>
       </header>
 
       <Countdown
         titulo="Faltan para el gran día"
         fechaISO={boda.ceremonia.fechaISO}
         mensajeLlegada="¡Hoy nos casamos!"
+        pie={`${boda.ceremonia.fechaTexto} · ${boda.ceremonia.horaTexto}`}
       />
 
       <hr />
@@ -51,6 +51,7 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
         titulo="Y para el viaje a Río"
         fechaISO={boda.viaje.fechaISO}
         mensajeLlegada="¡Nos vamos a Río!"
+        pie={boda.viaje.fechasTexto}
       />
     </main>
   </body>
@@ -73,26 +74,22 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
   h1 {
     font-family: var(--script);
     font-weight: 400;
-    margin: 0 0 1rem;
-    line-height: 1;
+    margin: 0;
   }
 
+  /* Qwitcher tiene ascendentes y descendentes muy largas: line-height < 1
+     para que los nombres no queden separados por huecos vacíos. */
   .nombre {
     display: block;
-    font-size: clamp(2.8rem, 15vw, 4rem);
+    font-size: clamp(4rem, 21vw, 6rem);
+    line-height: 0.8;
     color: var(--acento);
   }
 
   .amp {
     display: block;
-    font-size: 1.4rem;
+    font-size: clamp(2.2rem, 10vw, 3rem);
+    line-height: 0.8;
     color: var(--acento);
-    margin: 0.2rem 0;
-  }
-
-  .fecha {
-    font-size: clamp(0.9rem, 3.5vw, 1.05rem);
-    letter-spacing: 0.12em;
-    margin: 0;
   }
 </style>

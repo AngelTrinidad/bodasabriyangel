@@ -1,9 +1,10 @@
 :root {
+  /* Colores muestreados de la invitación original. */
   --crema: #f5f1e8;
-  --texto: #3d3a34;
-  --acento: #b08d57;
+  --texto: #333231;
+  --acento: #69622c; /* verde oliva de los nombres */
   --verde: #8a9a7b;
-  --script: 'Great Vibes', cursive;
+  --script: 'Qwitcher Grypen', cursive;
   --serif: 'Cormorant Garamond', Georgia, serif;
 }
 
