@@ -1,10 +1,7 @@
 ---
 import '../styles/global.css';
 import { boda } from '../data/boda.js';
-import Hero from '../components/Hero.astro';
 import Countdown from '../components/Countdown.astro';
-import Ceremonia from '../components/Ceremonia.astro';
-import Viaje from '../components/Viaje.astro';
 
 const titulo = `${boda.novios.ella} & ${boda.novios.el} — ${boda.ceremonia.fechaTexto}`;
 const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.ceremonia.lugar}, ${boda.ceremonia.ciudad}.`;
@@ -33,22 +30,69 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
 
   <body>
     <main>
-      <Hero />
-      <hr />
+      <header>
+        <h1>
+          <span class="nombre">{boda.novios.ella}</span>
+          <span class="amp">&amp;</span>
+          <span class="nombre">{boda.novios.el}</span>
+        </h1>
+        <p class="fecha">{boda.ceremonia.fechaTexto} &nbsp;·&nbsp; {boda.ceremonia.horaTexto}</p>
+      </header>
+
       <Countdown
         titulo="Faltan para el gran día"
         fechaISO={boda.ceremonia.fechaISO}
         mensajeLlegada="¡Hoy nos casamos!"
       />
+
       <hr />
-      <Ceremonia />
-      <hr />
+
       <Countdown
         titulo="Y para el viaje a Río"
         fechaISO={boda.viaje.fechaISO}
         mensajeLlegada="¡Nos vamos a Río!"
       />
-      <Viaje />
     </main>
   </body>
 </html>
+
+<style>
+  main {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(2rem, 7vh, 4rem);
+    padding: clamp(2rem, 8vh, 4rem) 1.25rem;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--script);
+    font-weight: 400;
+    margin: 0 0 1rem;
+    line-height: 1;
+  }
+
+  .nombre {
+    display: block;
+    font-size: clamp(2.8rem, 15vw, 4rem);
+    color: var(--acento);
+  }
+
+  .amp {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--acento);
+    margin: 0.2rem 0;
+  }
+
+  .fecha {
+    font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+    letter-spacing: 0.12em;
+    margin: 0;
+  }
+</style>

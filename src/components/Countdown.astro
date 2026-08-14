@@ -61,44 +61,50 @@ const inicial = timeLeft(new Date(fechaISO), new Date());
 <style>
   .countdown {
     text-align: center;
-    padding: 2.5rem 1rem;
   }
 
   .countdown h2 {
     font-family: var(--script);
     font-weight: 400;
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
     color: var(--acento);
-    margin: 0 0 1.5rem;
+    margin: 0 0 clamp(1rem, 3vh, 1.75rem);
   }
 
+  /* Mobile: 2x2 para que los números respiren. Desde 30rem, una fila de 4. */
   .cifras {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    max-width: 26rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 4vw, 1.5rem);
+    max-width: 34rem;
     margin: 0 auto;
+  }
+
+  @media (min-width: 30rem) {
+    .cifras {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .cifra span {
     display: block;
-    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    font-size: clamp(3.5rem, 18vw, 5.5rem);
     font-variant-numeric: tabular-nums;
-    line-height: 1.1;
+    line-height: 1;
   }
 
   .cifra small {
     display: block;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-size: clamp(0.65rem, 2.6vw, 0.8rem);
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--acento);
-    margin-top: 0.35rem;
+    margin-top: 0.5rem;
   }
 
   .llego {
     font-family: var(--script);
-    font-size: 2.2rem;
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
     color: var(--acento);
     margin: 0;
   }
