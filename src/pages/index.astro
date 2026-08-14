@@ -23,7 +23,7 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Qwitcher+Grypen:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -77,19 +77,17 @@ const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.cerem
     margin: 0;
   }
 
-  /* Qwitcher tiene ascendentes y descendentes muy largas: line-height < 1
-     para que los nombres no queden separados por huecos vacíos. */
   .nombre {
     display: block;
-    font-size: clamp(4rem, 21vw, 6rem);
-    line-height: 0.8;
+    font-size: clamp(2.8rem, 15vw, 4rem);
+    line-height: 1.1;
     color: var(--acento);
   }
 
   .amp {
     display: block;
-    font-size: clamp(2.2rem, 10vw, 3rem);
-    line-height: 0.8;
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
     color: var(--acento);
+    margin: 0.2rem 0;
   }
 </style>
