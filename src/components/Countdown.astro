@@ -1,0 +1,105 @@
+---
+import { timeLeft } from '../lib/countdown.js';
+
+const { titulo, fechaISO, mensajeLlegada } = Astro.props;
+
+const unidades = [
+  { clave: 'dias', label: 'días' },
+  { clave: 'horas', label: 'horas' },
+  { clave: 'minutos', label: 'min' },
+  { clave: 'segundos', label: 'seg' },
+];
+
+// Valor de build: el primer tick del cliente lo corrige en menos de un segundo.
+const inicial = timeLeft(new Date(fechaISO), new Date());
+---
+
+<section class="countdown" data-fecha={fechaISO} data-mensaje={mensajeLlegada}>
+  <h2>{titulo}</h2>
+  {inicial.llego ? (
+    <p class="llego">{mensajeLlegada}</p>
+  ) : (
+    <div class="cifras">
+      {unidades.map(({ clave, label }) => (
+        <div class="cifra">
+          <span data-unidad={clave}>{String(inicial[clave]).padStart(2, '0')}</span>
+          <small>{label}</small>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
+
+<script>
+  import { timeLeft } from '../lib/countdown.js';
+
+  document.querySelectorAll('.countdown').forEach((el) => {
+    const target = new Date(el.dataset.fecha);
+    const cifras = el.querySelector('.cifras');
+    if (!cifras) return; // ya había llegado en tiempo de build
+
+    const tick = () => {
+      const t = timeLeft(target, new Date());
+      if (t.llego) {
+        clearInterval(id);
+        const p = document.createElement('p');
+        p.className = 'llego';
+        p.textContent = el.dataset.mensaje;
+        cifras.replaceWith(p);
+        return;
+      }
+      el.querySelectorAll('[data-unidad]').forEach((span) => {
+        span.textContent = String(t[span.dataset.unidad]).padStart(2, '0');
+      });
+    };
+
+    const id = setInterval(tick, 1000);
+    tick();
+  });
+</script>
+
+<style>
+  .countdown {
+    text-align: center;
+    padding: 2.5rem 1rem;
+  }
+
+  .countdown h2 {
+    font-family: var(--script);
+    font-weight: 400;
+    font-size: 2rem;
+    color: var(--acento);
+    margin: 0 0 1.5rem;
+  }
+
+  .cifras {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+
+  .cifra span {
+    display: block;
+    font-size: clamp(1.8rem, 9vw, 2.6rem);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+
+  .cifra small {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-top: 0.35rem;
+  }
+
+  .llego {
+    font-family: var(--script);
+    font-size: 2.2rem;
+    color: var(--acento);
+    margin: 0;
+  }
+</style>

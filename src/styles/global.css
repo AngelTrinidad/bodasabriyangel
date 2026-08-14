@@ -1,0 +1,35 @@
+:root {
+  --crema: #f5f1e8;
+  --texto: #3d3a34;
+  --acento: #b08d57;
+  --verde: #8a9a7b;
+  --script: 'Great Vibes', cursive;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+hr {
+  width: 3rem;
+  margin: 0 auto;
+  border: 0;
+  border-top: 1px solid var(--verde);
+  opacity: 0.5;
+}

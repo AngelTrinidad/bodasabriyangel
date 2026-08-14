@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+import { boda } from '../data/boda.js';
+import Hero from '../components/Hero.astro';
+import Countdown from '../components/Countdown.astro';
+import Ceremonia from '../components/Ceremonia.astro';
+import Viaje from '../components/Viaje.astro';
+
+const titulo = `${boda.novios.ella} & ${boda.novios.el} — ${boda.ceremonia.fechaTexto}`;
+const descripcion = `Nos casamos el ${boda.ceremonia.fechaTexto} en ${boda.ceremonia.lugar}, ${boda.ceremonia.ciudad}.`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={new URL('/ilustracion.jpg', Astro.site)} />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main>
+      <Hero />
+      <hr />
+      <Countdown
+        titulo="Faltan para el gran día"
+        fechaISO={boda.ceremonia.fechaISO}
+        mensajeLlegada="¡Hoy nos casamos!"
+      />
+      <hr />
+      <Ceremonia />
+      <hr />
+      <Countdown
+        titulo="Y para el viaje a Río"
+        fechaISO={boda.viaje.fechaISO}
+        mensajeLlegada="¡Nos vamos a Río!"
+      />
+      <Viaje />
+    </main>
+  </body>
+</html>
